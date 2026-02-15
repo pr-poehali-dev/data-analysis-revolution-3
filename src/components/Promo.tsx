@@ -25,14 +25,28 @@ export default function Promo() {
         </motion.div>
       </div>
 
-      <h3 className="absolute top-12 right-6 text-white uppercase z-10 text-sm md:text-base lg:text-lg">
-        Анатомия возможностей
+      <h3 id="pricing" className="absolute top-12 right-6 text-white uppercase z-10 text-sm md:text-base lg:text-lg">
+        Тарифы
       </h3>
 
-      <p className="absolute bottom-12 right-6 text-white text-xl sm:text-2xl md:text-3xl lg:text-4xl xl:text-5xl max-w-xs sm:max-w-md md:max-w-lg lg:max-w-xl xl:max-w-5xl z-10">
-        Каждая секция — рамка для твоей истории. Формируй её, миксуй и позволь контенту
-        литься в неожиданные паттерны, заставляя листать дальше.
-      </p>
+      <div className="absolute bottom-12 left-6 right-6 z-10 flex flex-col sm:flex-row gap-6 sm:gap-8 items-start sm:items-end">
+        <div className="bg-white/10 backdrop-blur-md border border-white/20 rounded-2xl p-6 sm:p-8 flex-1 max-w-sm">
+          <h4 className="text-white text-lg uppercase tracking-wide mb-2">VIP</h4>
+          <p className="text-white text-4xl sm:text-5xl font-bold mb-2">10 ₽</p>
+          <p className="text-white/70 text-sm mb-4">Расширенная команда и базовые ресурсы для старта</p>
+          <button className="bg-white text-black px-6 py-2 text-sm uppercase tracking-wide font-semibold hover:bg-neutral-200 transition-colors duration-300 w-full">
+            Подключить
+          </button>
+        </div>
+        <div className="bg-white/15 backdrop-blur-md border border-white/30 rounded-2xl p-6 sm:p-8 flex-1 max-w-sm">
+          <h4 className="text-white text-lg uppercase tracking-wide mb-2">Премиум</h4>
+          <p className="text-white text-4xl sm:text-5xl font-bold mb-2">50 ₽</p>
+          <p className="text-white/70 text-sm mb-4">Максимум ресурсов, большая команда, приоритетная поддержка</p>
+          <button className="bg-white text-black px-6 py-2 text-sm uppercase tracking-wide font-semibold hover:bg-neutral-200 transition-colors duration-300 w-full">
+            Подключить
+          </button>
+        </div>
+      </div>
     </div>
   );
 }

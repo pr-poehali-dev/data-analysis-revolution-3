@@ -27,11 +27,17 @@ export default function Hero() {
 
       <div className="relative z-10 text-center text-white">
         <h1 className="text-5xl md:text-7xl lg:text-8xl font-bold tracking-tight mb-6">
-          ОТКРОЙ
+          ПРОДАВАЙ БОЛЬШЕ
         </h1>
-        <p className="text-lg md:text-xl max-w-2xl mx-auto px-6 opacity-90">
-          Исследуй границы дизайна с иммерсивным параллакс-эффектом
+        <p className="text-lg md:text-xl max-w-2xl mx-auto px-6 opacity-90 mb-8">
+          Масштабируй команду и ресурсы — увеличивай продажи без ограничений
         </p>
+        <a
+          href="#pricing"
+          className="inline-block bg-white text-black px-8 py-3 text-sm uppercase tracking-wide font-semibold hover:bg-neutral-200 transition-colors duration-300"
+        >
+          Выбрать тариф
+        </a>
       </div>
     </div>
   );
