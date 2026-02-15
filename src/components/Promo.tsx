@@ -1,8 +1,29 @@
 import { useScroll, useTransform, motion } from "framer-motion";
-import { useRef } from "react";
+import { useRef, useState } from "react";
+import funcUrls from "../../backend/func2url.json";
+
+async function handlePayment(plan: string, setLoading: (v: string | null) => void) {
+  setLoading(plan);
+  try {
+    const res = await fetch(funcUrls["create-payment"], {
+      method: "POST",
+      headers: { "Content-Type": "application/json" },
+      body: JSON.stringify({ plan, return_url: window.location.href }),
+    });
+    const data = await res.json();
+    if (data.confirmation_url) {
+      window.location.href = data.confirmation_url;
+    }
+  } catch {
+    alert("Ошибка при создании платежа. Попробуйте позже.");
+  } finally {
+    setLoading(null);
+  }
+}
 
 export default function Promo() {
   const container = useRef<HTMLDivElement>(null);
+  const [loading, setLoading] = useState<string | null>(null);
   const { scrollYProgress } = useScroll({
     target: container,
     offset: ["start end", "end start"],
@@ -34,16 +55,24 @@ export default function Promo() {
           <h4 className="text-white text-lg uppercase tracking-wide mb-2">VIP</h4>
           <p className="text-white text-4xl sm:text-5xl font-bold mb-2">10 ₽</p>
           <p className="text-white/70 text-sm mb-4">Расширенная команда и базовые ресурсы для старта</p>
-          <button className="bg-white text-black px-6 py-2 text-sm uppercase tracking-wide font-semibold hover:bg-neutral-200 transition-colors duration-300 w-full">
-            Подключить
+          <button
+            onClick={() => handlePayment("vip", setLoading)}
+            disabled={loading === "vip"}
+            className="bg-white text-black px-6 py-2 text-sm uppercase tracking-wide font-semibold hover:bg-neutral-200 transition-colors duration-300 w-full disabled:opacity-50"
+          >
+            {loading === "vip" ? "Загрузка..." : "Подключить"}
           </button>
         </div>
         <div className="bg-white/15 backdrop-blur-md border border-white/30 rounded-2xl p-6 sm:p-8 flex-1 max-w-sm">
           <h4 className="text-white text-lg uppercase tracking-wide mb-2">Премиум</h4>
           <p className="text-white text-4xl sm:text-5xl font-bold mb-2">50 ₽</p>
           <p className="text-white/70 text-sm mb-4">Максимум ресурсов, большая команда, приоритетная поддержка</p>
-          <button className="bg-white text-black px-6 py-2 text-sm uppercase tracking-wide font-semibold hover:bg-neutral-200 transition-colors duration-300 w-full">
-            Подключить
+          <button
+            onClick={() => handlePayment("premium", setLoading)}
+            disabled={loading === "premium"}
+            className="bg-white text-black px-6 py-2 text-sm uppercase tracking-wide font-semibold hover:bg-neutral-200 transition-colors duration-300 w-full disabled:opacity-50"
+          >
+            {loading === "premium" ? "Загрузка..." : "Подключить"}
           </button>
         </div>
       </div>
